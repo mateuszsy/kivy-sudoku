@@ -1,0 +1,83 @@
+<SudokuGame>
+    line_size: 3
+    size_hint: 1, .8
+    cols: self.cols
+
+    canvas:
+        Color:
+            rgb: 0, 0.69, 1
+        Rectangle:
+            pos: self.x + self.width/3 - self.line_size/2, self.y
+            size: self.line_size, self.height
+        Rectangle:
+            pos: self.x + 2*self.width/3 - self.line_size/2, self.y
+            size: self.line_size, self.height
+        Rectangle:
+            pos: self.x, self.y + self.height/3 - self.line_size/2
+            size: self.width, self.line_size
+        Rectangle:
+            pos: self.x, self.y + 2*self.height/3 - self.line_size/2
+            size: self.width, self.line_size
+
+<SudokuBoard>:
+    BoxLayout:
+        elapsed_time: self.elapsed_time
+        orientation: 'vertical'
+        SudokuGame:
+            id: game
+        BoxLayout:
+            size_hint: 1, .2
+            orientation: 'horizontal'
+            BoxLayout:
+                orientation: 'vertical'
+                size_hint: .3, 1
+                OptionButton:
+                    text: 'Check'
+                    on_release: root.check()
+                OptionButton:
+                    text: 'Reset timer'
+                    on_release: root.reset_timer()
+                OptionButton:
+                    text: 'Clear board'
+                    on_release: root.clear_board()
+            Label:
+                size_hint: .3, 1
+                font_size: 20
+                text: root.elapsed_time
+            OptionButton:
+                size_hint: .5, .5
+                text: 'Solve'
+                on_release: root.solve()
+
+<SudokuMenu>:
+    BoxLayout:
+        size: 500, 300
+        size_hint: None, None
+        pos_hint: {'center_x': .5, 'center_y': .5}
+        orientation: 'vertical'
+        Label:
+            text: 'Sudoku game&solver'
+            font_size: 40
+            color: 0, 0.69, 1, 1
+        OutlineButton:
+            text: 'Play'
+            on_release:
+                app.root.current = 'board'
+
+<OptionButton@Button>:
+    background_normal: ''
+    background_down: ''
+    background_color: 0, 0.69, 1, 1
+    font_size: 20
+
+<OutlineButton@Button>:
+    background_normal: ''
+    background_down: ''
+    background_color: 0,0,0,1
+    size_hint: .5, .5
+    pos_hint: {'center_x': .5, 'center_y': .5}
+    font_size: 40
+    canvas.before:
+        Line:
+            width: 1
+            rectangle: self.x, self.y, self.width, self.height
