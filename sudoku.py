@@ -19,7 +19,6 @@ class Sudoku:
                     return True
 
                 self.grid[row][col].text = ''
-
         return False
 
     def check(self):
@@ -32,26 +31,24 @@ class Sudoku:
                 number = self.grid[row][col].text
                 if not self._valid(number, row, col):
                     return False
-
         return True
 
     def _valid(self, number, row, col):
 
         # Check rows and columns
         for i in range(len(self.grid)):
-            if self.grid[i][col].text == number and row != i:
-                return False
-            if self.grid[row][i].text == number and col != i:
+            col_value = self.grid[i][col].text
+            row_value = self.grid[row][i].text
+            if col_value == number and row != i or row_value == number and col != i:
                 return False
 
-        # Pick box borders and check the box
+        # Set box borders and check for collisions
         border_vertical = col // 3 * 3
         border_horizontal = row // 3 * 3
         for i in range(border_horizontal, border_horizontal + 3):
             for j in range(border_vertical, border_vertical + 3):
                 if self.grid[i][j].text == number and row != i and col != j:
                     return False
-
         return True
 
     def _find_empty(self):
