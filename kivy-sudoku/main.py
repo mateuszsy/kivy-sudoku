@@ -33,7 +33,7 @@ class SudokuGame(GridLayout):
         self._keyboard.unbind(on_key_down=self._on_key_down)
         self._keyboard = None
 
-    def _on_key_down(self, keyboard, keycode, text, modifiers):
+    def _on_key_down(self, _, keycode, _, _):
         allowed_keycodes = [str(i) for i in range(1, 10)]
 
         if keycode[1] == 'backspace':
@@ -116,7 +116,8 @@ class SudokuBoard(Screen):
 
 
 class SudokuApp(App):
-    def build(self):
+    @staticmethod
+    def build():
         sm = ScreenManager()
         sm.add_widget(SudokuMenu(name='menu'))
         sm.add_widget(SudokuBoard(name='board'))

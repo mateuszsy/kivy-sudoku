@@ -14,6 +14,5 @@ If you manage to solve the puzzle and you'd like to know if you did it right you
 ## How to run
 ```shell script
 pip install -r requirements.txt
-cd ../kivy-sudoku
-python main.py
+python kivy-sudoku/main.py
 ```
