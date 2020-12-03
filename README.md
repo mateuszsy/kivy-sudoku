@@ -11,3 +11,9 @@ App uses **backtracking algorithm** to solve the puzzle.
 ## Checker
 If you manage to solve the puzzle and you'd like to know if you did it right you can use the **Check** option.
 
+## How to run
+```shell script
+pip install -r requirements.txt
+cd ../kivy-sudoku
+python main.py
+```
